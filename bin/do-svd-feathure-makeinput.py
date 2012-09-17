@@ -53,13 +53,13 @@ uids = load_rawuid_id()
 uid_cnt = len(uids)
 jids = load_rawjid_id()
 
-print "Making test data..."
+print "Making test data for svd-feathure..."
 if True :
  with open(wd + "users.tsv", "r") as infile:
     reader = csv.reader(infile, delimiter="\t", 
     quoting=csv.QUOTE_NONE, quotechar="")
     reader.next() # burn the header
-    with open(TMP_DIR+"test.data", "w") as outfile:
+    with open(TMP_DIR+"svd-test.data", "w") as outfile:
         for line in reader:
             (UserId, WindowId, Split, City, State, Country, ZipCode,
             DegreeType, Major, GraduationDate, WorkHistoryCount,
@@ -68,15 +68,17 @@ if True :
             if Split == "Train":
                 continue
             top_jobs = top_city_jobs[int(WindowId)][State][City]
-            outfile.write( "\n".join(  [ ' '.join( ['1',str(uids[int(UserId)])+':1',  str(jids[int(x[0])] + uid_cnt )+':1'])  for x in top_jobs]) + "\n")
+            if len(top_jobs) !=0 :
+            	outfile.write( "\n".join(  [ ' '.join( ['1 0 1 1',str(uids[int(UserId)])+':1',  str(jids[int(x[0])])+':1'])  for x in top_jobs]) +'\n' )
 			
 			
 if True:			
- print 'making train data...'
- with open(TMP_DIR + 'train.data','w') as fout:
-	apps = load_uid_apps()
-	for uid in apps :
-		fout.write('\n'.join( [ ' '.join( ['1',str(uids[uid])+':1',str(jids[jid]+uid_cnt)+':1'] )  for jid in apps[uid]    ]   )  + '\n'   )	
+	print 'making train data for svd-feathure...'
+	with open(TMP_DIR + 'svd-train.data','w') as fout:
+		apps = load_uid_apps()
+		for uid in apps :
+			if len(apps[uid]) !=0:
+				fout.write('\n'.join( [ ' '.join( ['1 0 1 1',str(uids[uid])+':1',str(jids[jid])+':1'] )  for jid in apps[uid]    ]   )  + '\n'   )	
 
 
 

@@ -29,6 +29,12 @@ def load_rawuid_id():
 	''' Output {raw_userid : uid } '''
 	return RawuidUid().load_data();
 
+def put_rawuid_id():
+	'''	stdout(raw_userid uid)'''
+	data = load_rawuid_id()
+	for uid in data:
+		print uid,data[uid]
+
 class RawjidJid(DataLoader):
 	def __init__(self):
 		DataLoader.__init__(self,1)
@@ -47,6 +53,11 @@ class RawjidJid(DataLoader):
 def load_rawjid_id():
 	''' Output {raw_userid : uid } '''
 	return RawjidJid().load_data();
+def put_rawjid_id():
+	'''	stdout(raw_jobid jid)'''
+	data = load_rawjid_id()
+	for jid in data:
+		print jid,data[jid]
 
 
 def get_time_struct(line):
@@ -302,7 +313,7 @@ def load_fav_jobs(fields):
 	''' Output { fields[1]:{fields[2]: {    ...  { jid:cnt }}   }       }   '''
 	return FavJobs('users.tsv',fields).load_data()
 def load_fav_jobs_wcdmm():
-	return load_fav_jobs(['WindowID','City','DegreeType','Major','ManagedOthers'])
+	return load_fav_jobs(['WindowID','State','DegreeType','Major'])
 
 
 def main():
@@ -315,7 +326,8 @@ def main():
 #	load_uid_history()
 #	load_uid_tags()
 #	load_fav_jobs(['City','DegreeType','Major','ManagedOthers'])
-	load_fav_jobs_cdmm()
+#	load_fav_jobs_cdmm()
+	put_rawjid_id()
 	pass
 
 

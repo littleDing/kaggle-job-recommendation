@@ -65,7 +65,7 @@ with open(wd + "users.tsv", "r") as infile:
             ManagedHowMany) = line
             if Split == "Train":
                 continue
-            top_jobs = fav_jobs[WindowId][City][DegreeType][Major][ManagedOthers]
+            top_jobs = fav_jobs[WindowId][State][DegreeType][Major]
             top_jobs += top_city_jobs[int(WindowId)][State][City]
             if len(top_jobs) < 150:
                 top_jobs += top_state_jobs[int(WindowId)][State]

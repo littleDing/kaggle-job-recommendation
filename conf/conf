@@ -1,0 +1,14 @@
+ROOT="/home/share/kaggle/kaggle-job-recommendation/"
+BIN_DIR="$ROOT/bin/"
+DATA_DIR="$ROOT/data/"
+LOG_DIR="$ROOT/log/"
+TMP_DIR="$ROOT/tmp/"
+CONF_DIR="$ROOT/conf/"
+
+MALLET_ROOT="/home/littleding/IDE/mallet/mallet-2.0.7/"
+MALLET="${MALLET_ROOT}/bin/mallet"
+
+SVD_ROOT="/home/littleding/IDE/svdfeature"
+SVD_TRAIN="$SVD_ROOT/svd_feature"
+SVD_TEST="$SVD_ROOT/svd_feature_infer"
+
